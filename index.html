@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafenstrom - Energizing the future</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #121212;
+      --bg-light: #f5f5f5;
+      --bg-white: #ffffff;
+      --text-dark: #121212;
+      --text-light: #ffffff;
+      --text-gray: #a0a0a0;
+      --font-main: 'Inter', sans-serif;
+      --border-radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-white);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* FULL SCREEN HERO SECTION */
+    .hero-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      /* Full viewport height on every screen */
+      background-color: #000;
+      overflow: hidden;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .hero-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 55%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-parallax-img {
+      width: 100%;
+      height: 130%;
+      /* Oversized for vertical movement range */
+      object-fit: cover;
+      position: absolute;
+      top: -15%;
+      left: 0;
+      will-change: transform;
+      transform: translateY(0) scale(1.1);
+      transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .hero-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 52%;
+      /* Covers slightly more than half */
+      height: 100%;
+      background-color: #171717;
+      /* Very dark gray/black */
+      color: #ffffff;
+      border-radius: 0 40px 40px 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 60px;
+      box-shadow: 20px 0 50px rgba(0, 0, 0, 0.4);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 400;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      margin-right: auto;
+      /* Pushes links to the right */
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      margin-right: 40px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* HERO CONTENT */
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      /* Vertically centered */
+      max-width: 600px;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 6.2vw, 88px);
+      /* Massive, high-impact grand title */
+      line-height: 1.0;
+      letter-spacing: -3.5px;
+      /* Premium tight editorial kerning */
+      margin-bottom: 30px;
+      font-weight: 500;
+      /* Bolder weight for immense impact */
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 1.5vw, 20px);
+      line-height: 1.4;
+      color: var(--text-gray);
+      margin-bottom: 50px;
+      max-width: 450px;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .btn-projects {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 16px 36px;
+      /* Increased padding for a bolder premium CTA presence! */
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 17px;
+      /* Increased font-size! */
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-projects:hover {
+      background-color: #e0e0e0;
+    }
+
+    .btn-news {
+      color: #ffffff;
+      font-size: 17px;
+      /* Increased font-size! */
+      font-weight: 500;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.3s;
+    }
+
+    .btn-news:hover {
+      opacity: 0.7;
+    }
+
+    /* COMMON PAGE LAYOUT */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .dark-section {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      border-radius: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .light-section {
+      padding: 80px 0;
+      background-color: var(--bg-white);
+    }
+
+    .bg-gray {
+      background-color: var(--bg-light);
+      padding: 80px 0;
+      border-radius: 40px;
+      margin: 0 20px;
+    }
+
+    .section-title {
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 60px;
+    }
+
+    /* INTRO SECTION REDESIGN */
+    .intro-section {
+      min-height: 100vh;
+      /* Takes up full screen height */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      /* Push top elements up, bottom elements down */
+      padding: 120px 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .intro-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 80px;
+    }
+
+    .intro-title {
+      font-size: clamp(40px, 5.5vw, 80px);
+      /* Significantly larger title */
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -2.5px;
+      flex: 1.3;
+      color: #121212;
+    }
+
+    .intro-title .line,
+    .stats-header .line {
+      display: block;
+      white-space: nowrap;
+      /* Forces exactly two lines, completely bulletproof wrap prevention! */
+    }
+
+    .intro-desc {
+      font-size: 16px;
+      line-height: 1.5;
+      max-width: 440px;
+      color: #121212;
+      font-weight: 400;
+      flex: 1;
+    }
+
+    .intro-bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+    }
+
+    .intro-col {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333333;
+      font-weight: 400;
+    }
+
+    /* STAGGERED SPRING BOUNCING REVEAL ANIMATIONS */
+    .intro-title,
+    .intro-desc,
+    .intro-col,
+    .canopy-title,
+    .canopy-details {
+      opacity: 0;
+      transform: translateY(80px);
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease-out;
+      will-change: transform, opacity;
+    }
+
+    .intro-section.active .intro-title,
+    .news-section.active .intro-title {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    .intro-section.active .intro-desc {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.25s;
+    }
+
+    .intro-section.active .intro-col:nth-child(1) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.4s;
+    }
+
+    .intro-section.active .intro-col:nth-child(2) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.5s;
+    }
+
+    .intro-section.active .intro-col:nth-child(3) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.6s;
+    }
+
+    .canopy-section.active .canopy-title {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.15s;
+    }
+
+    .canopy-section.active .canopy-details {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.35s;
+    }
+
+    /* CANOPY SECTION styling (ADVANCED PINNING & SCROLL-DRIVEN EFFECT) */
+    .canopy-section {
+      position: relative;
+      width: 100%;
+      height: 200vh;
+      /* Extra scroll space to act as a pinning track */
+      background-color: #fff;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .canopy-sticky-wrapper {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      /* Pins to full screen height */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .canopy-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      /* Covers half the screen */
+      height: 100%;
+      overflow: hidden;
+      border-radius: 0 40px 40px 0;
+      /* Rounded right edge where it meets text */
+      z-index: 1;
+    }
+
+    .canopy-left img {
+      width: 100%;
+      height: 130%;
+      /* Oversized height to allow range of motion */
+      object-fit: cover;
+      position: absolute;
+      top: -15%;
+      left: 0;
+      will-change: transform;
+      transform: translateY(0) scale(1.15);
+      transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .canopy-right {
+      margin-left: 50%;
+      /* Positioned right after the half-width image */
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 80px 100px;
+      z-index: 2;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    .canopy-title {
+      font-size: clamp(40px, 5vw, 76px);
+      /* Matching the grand Vision titles of Section 2 and 4! */
+      line-height: 1.05;
+      letter-spacing: -2.5px;
+      /* Signature compact kerning */
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-top: 40px;
+    }
+
+    .canopy-details {
+      display: flex;
+      gap: 40px;
+      align-items: flex-end;
+    }
+
+    .canopy-col-left {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555555;
+      flex: 0.8;
+    }
+
+    .canopy-col-right {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #222222;
+      flex: 1.2;
+    }
+
+    /* Staggered slide-in-right text reveal */
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(45px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* NEW STATS SECTION (100% MATCH TO SCREENSHOT) */
+    .stats-section {
+      width: 100vw;
+      height: 100vh;
+      background-color: #121212;
+      /* Exact dark layout color */
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      overflow: hidden;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      width: 100%;
+      height: 100%;
+    }
+
+    .stats-col {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 120px 40px 100px 40px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      /* Subtle vertical divider line */
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(80px);
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease-out;
+      will-change: transform, opacity;
+    }
+
+    .stats-col:last-child {
+      border-right: none;
+      /* No line on the very right edge */
+    }
+
+    .stats-header {
+      font-size: clamp(40px, 5.2vw, 76px);
+      /* Ultra grand, high-impact size */
+      line-height: 1.0;
+      letter-spacing: -3.5px;
+      /* Extremely tight premium editorial kerning */
+      color: #ffffff;
+      font-weight: 500;
+      /* Bolder weight for high impact */
+      margin-top: 10px;
+    }
+
+    .stats-top-spacer {
+      height: 60px;
+    }
+
+    .stat-content h3 {
+      font-size: clamp(34px, 3.8vw, 56px);
+      font-weight: 400;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: -1.5px;
+    }
+
+    .stat-content p {
+      font-size: clamp(12px, 1.1vw, 15px);
+      line-height: 1.4;
+      color: #a0a0a0;
+      font-weight: 400;
+      max-width: 220px;
+    }
+
+    /* Staggered Spring Bouncing for Stats Columns */
+    .stats-section.active .stats-col:nth-child(1) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    .stats-section.active .stats-col:nth-child(2) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
+
+    .stats-section.active .stats-col:nth-child(3) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.3s;
+    }
+
+    .stats-section.active .stats-col:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.4s;
+    }
+
+    .stats-section.active .stats-col:nth-child(5) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.5s;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-left {
+        width: 60%;
+        padding: 40px;
+      }
+
+      .hero-right {
+        width: 50%;
+      }
+
+      .nav-links {
+        gap: 20px;
+        margin-right: 0;
+      }
+
+      .intro-top {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .intro-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .canopy-section {
+        height: auto !important;
+      }
+
+      .canopy-sticky-wrapper {
+        position: relative !important;
+        height: auto !important;
+        display: block !important;
+      }
+
+      .canopy-left {
+        position: relative !important;
+        width: 100% !important;
+        height: 45vh !important;
+        border-radius: 0 0 24px 24px !important;
+      }
+
+      .canopy-right {
+        margin-left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 40px 30px !important;
+      }
+
+      .canopy-title,
+      .canopy-details {
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      /* Stats mobile reset */
+      .stats-section {
+        height: auto !important;
+        min-height: auto !important;
+        display: block !important;
+        padding: 80px 0 !important;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr !important;
+        height: auto !important;
+      }
+
+      .stats-col {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        padding: 40px 30px !important;
+        height: auto !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      .stats-col:last-child {
+        border-bottom: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-left {
+        width: 100%;
+        border-radius: 0;
+        background-color: rgba(23, 23, 23, 0.85);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-right {
+        width: 100%;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* SECTION 5: ASYMMETRICAL NEWS GRID (100% MATCH TO SCREENSHOT) */
+    .news-section {
+      width: 100vw;
+      min-height: 100vh;
+      height: auto;
+      /* Allow section to grow vertically so user can scroll down! */
+      background-color: #ffffff;
+      padding: 80px 100px 120px 100px;
+      display: flex;
+      flex-direction: column;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      box-sizing: border-box;
+    }
+
+    .news-header-wrapper {
+      margin-bottom: 50px;
+    }
+
+    .news-header-wrapper .intro-title {
+      font-size: clamp(40px, 5.2vw, 76px);
+      line-height: 1.0;
+      letter-spacing: -3.5px;
+      color: #121212;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .news-rows-container {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      /* Space between the rows */
+      width: 100%;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: 2.8fr 1fr;
+      /* Wider main hero column, making right small cards narrower */
+      gap: 30px;
+      height: 680px;
+      /* Boost height to change smaller cards' aspect ratio to gorgeous, prominent rectangles! */
+      width: 100%;
+    }
+
+    .news-card-large {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 50px;
+      background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/drone_fog_1779098993374.png');
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      box-sizing: border-box;
+    }
+
+    .news-card-large::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%);
+      z-index: 1;
+    }
+
+    .news-card-large * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .news-card-large .badge-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .badge-date {
+      background-color: #ffffff;
+      color: #121212;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+    }
+
+    .badge-tag-white {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      /* Crisp 1px white border stroke */
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 500;
+      background: transparent;
+    }
+
+    .news-card-large-title {
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -1.8px;
+      font-weight: 500;
+      max-width: 520px;
+      margin-bottom: 10px;
+    }
+
+    .news-arrow-btn {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      width: 72px;
+      /* Increased circular dimensions for a gorgeous luxury feel! */
+      height: 72px;
+      border-radius: 100px;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #121212;
+      font-size: 28px;
+      /* Increased font-size! */
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 3;
+      text-decoration: none;
+    }
+
+    .news-arrow-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Right column stacked news cards */
+    .news-column-right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 30px;
+      height: 100%;
+      margin-top: -45px;
+      /* Shift small boxes vertically up to create gorgeous staggered masonry offset! */
+    }
+
+    .news-card-small-solid {
+      background-color: #c5d3d6;
+      /* Exquisite sage green match */
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px;
+      color: #121212;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+
+    .badge-tag-dark {
+      border: 1px solid rgba(18, 18, 18, 0.4);
+      /* Crisp 1px dark border stroke */
+      color: #121212;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      width: max-content;
+    }
+
+    .news-card-small-title {
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.1;
+      letter-spacing: -1.2px;
+      font-weight: 500;
+      max-width: 260px;
+    }
+
+    .news-learn-more {
+      font-size: 13px;
+      font-weight: 500;
+      color: #121212;
+      align-self: flex-end;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .news-card-small-img {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px;
+      background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/green_lamp_1779099020122.png');
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+
+    .news-card-small-img::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+      z-index: 1;
+    }
+
+    .news-card-small-img * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .news-card-small-img .badge-tag-white {
+      width: max-content;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      /* Crisp 1px white border stroke */
+    }
+
+    .news-card-small-img .news-card-small-title {
+      color: #ffffff;
+    }
+
+    /* Staggered Spring Bouncing for Multi-Row News Grid */
+    .news-row-1 .news-card-large,
+    .news-row-1 .news-card-small-solid,
+    .news-row-1 .news-card-small-img,
+    .news-row-2 .news-card-large,
+    .news-row-2 .news-card-small-img-1,
+    .news-row-2 .news-card-small-img-2 {
+      opacity: 0;
+      transform: translateY(80px);
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease-out;
+      will-change: transform, opacity;
+    }
+
+    .news-section.active .news-row-1 .news-card-large {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    .news-section.active .news-row-1 .news-card-small-solid {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.25s;
+    }
+
+    .news-section.active .news-row-1 .news-card-small-img {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.4s;
+    }
+
+    .news-section.active .news-row-2 .news-card-large {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
+
+    .news-section.active .news-row-2 .news-card-small-img-1 {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.35s;
+    }
+
+    .news-section.active .news-row-2 .news-card-small-img-2 {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.5s;
+    }
+
+    .btn-see-all-news {
+      background-color: #ffffff;
+      color: #121212;
+      padding: 20px 48px;
+      /* Increased padding size! */
+      border-radius: 100px;
+      font-size: 18px;
+      /* Bold luxury font-size! */
+      font-weight: 500;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.35s ease;
+      cursor: pointer;
+    }
+
+    .btn-see-all-news:hover {
+      transform: scale(1.06);
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    /* Responsive overrides */
+    @media (max-width: 1024px) {
+      .news-section {
+        height: auto !important;
+        min-height: auto !important;
+        padding: 60px 24px !important;
+        display: block !important;
+      }
+
+      .news-header-wrapper {
+        margin-bottom: 24px !important;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        height: auto !important;
+      }
+
+      .news-card-large {
+        height: 380px !important;
+        padding: 30px !important;
+      }
+
+      .news-arrow-btn {
+        bottom: 30px !important;
+        right: 30px !important;
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+      }
+
+      .news-column-right {
+        grid-template-rows: auto auto !important;
+        gap: 20px !important;
+        margin-top: 20px !important;
+        height: auto !important;
+      }
+
+      .news-card-small-solid,
+      .news-card-small-img {
+        height: 260px !important;
+        padding: 30px !important;
+      }
+
+      .news-card-large,
+      .news-card-small-solid,
+      .news-card-small-img {
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      .hero-title,
+      .intro-title,
+      .canopy-title,
+      .stats-header {
+        font-size: 34px !important;
+        letter-spacing: -1.5px !important;
+      }
+    }
+
+    /* Unified Section Titles at exactly 58px */
+    .hero-title,
+    .intro-title,
+    .canopy-title,
+    .stats-header,
+    .projects-title,
+    .companies-title {
+      font-weight: 500 !important;
+      font-size: 58px !important;
+      line-height: 1.05 !important;
+      letter-spacing: -2.5px !important;
+    }
+
+
+    .btn-see-all-picks-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: auto;
+      padding-top: 15px;
+    }
+
+    .btn-see-all-picks {
+      background-color: #ffffff;
+      color: #121212;
+      padding: 20px 56px;
+      /* Expanded visual padding footprint! */
+      border-radius: 100px;
+      font-size: 19px;
+      /* Prominent typography scale! */
+      font-weight: 500;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      display: inline-block;
+      letter-spacing: -0.2px;
+    }
+
+    .news-card-hiker-cta:hover .btn-see-all-picks {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 1024px) {
+      .btn-see-all-picks {
+        padding: 12px 30px !important;
+        font-size: 15px !important;
+      }
+    }
+
+    /* Correctly closed! Fixes desktop invisible section bug! */
+
+    /* SECTION 6: PROJECTS VIEWPORT GRID (100% MATCH TO SCREENSHOT) */
+    .projects-section {
+      width: 100vw;
+      min-height: 100vh;
+      height: auto;
+      background-color: #f5f5f7;
+      /* Exact premium off-white/light gray matching Hafenstrom Projects screenshot! */
+      padding: 80px 100px 140px 100px;
+      display: flex;
+      flex-direction: column;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      box-sizing: border-box;
+    }
+
+    .projects-header-wrapper {
+      margin-bottom: 80px;
+      margin-top: 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /* Symmetrical equal columns! */
+      gap: 40px;
+      /* Elegant gap spacing */
+      width: 100%;
+    }
+
+    .projects-column-left {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
+    }
+
+    .projects-column-right {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
+      margin-top: -140px;
+      /* Shifts the entire right column up to align perfectly beside the title! */
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: 28px;
+      /* Smooth rounded corners matching your layout */
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+      background-size: cover;
+      background-position: center;
+      box-sizing: border-box;
+      height: 580px;
+      /* Equal rectangular heights for all cards! */
+      text-decoration: none;
+    }
+
+    .project-badge {
+      background-color: #ffffff;
+      color: #121212;
+      padding: 16px 36px;
+      /* Expanded padding for a prominent, bolder button pill! */
+      border-radius: 100px;
+      font-size: 18px;
+      /* Increased typography scale to make it look like a real button! */
+      font-weight: 500;
+      width: max-content;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      /* Increased depth shadow */
+      letter-spacing: -0.2px;
+      position: relative;
+      z-index: 2;
+      border: 1px solid rgba(18, 18, 18, 0.15);
+      /* Unified crisp outline tag */
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s;
+    }
+
+    .project-card:hover .project-badge {
+      transform: scale(1.08);
+      /* Scales up dynamically to look beautifully bigger on hover! */
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      /* Slightly boosts depth shadow on hover */
+    }
+
+    /* Staggered Spring Reveal for Symmetrical Projects cards */
+    .project-card {
+      opacity: 0;
+      transform: translateY(80px);
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease-out;
+      will-change: transform, opacity;
+    }
+
+    /* Perfect diagonal stagger triggers as you scroll! */
+    .projects-section.active .projects-column-left .project-card:nth-child(1) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    .projects-section.active .projects-column-right .project-card:nth-child(1) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.25s;
+    }
+
+    .projects-section.active .projects-column-left .project-card:nth-child(2) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.4s;
+    }
+
+    .projects-section.active .projects-column-right .project-card:nth-child(2) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.55s;
+    }
+
+    /* Responsive overrides for Symmetrical Projects Layout */
+    @media (max-width: 1024px) {
+      .projects-section {
+        height: auto !important;
+        min-height: auto !important;
+        padding: 60px 24px !important;
+        display: block !important;
+      }
+
+      .projects-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+      }
+
+      .projects-column-left,
+      .projects-column-right {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+        margin-top: 0 !important;
+        /* Reset offset completely on mobile */
+      }
+
+      .project-card {
+        height: 380px !important;
+        /* Scale down card height on tablets/phones */
+        padding: 30px !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      .project-badge {
+        padding: 10px 20px !important;
+        font-size: 13px !important;
+      }
+    }
+
+    /* SECTION 7: COMPANIES ROW SECTION */
+    .companies-section {
+      width: 100vw;
+      min-height: 100vh;
+      height: auto;
+      background-color: #ffffff;
+      padding: 120px 0 0 0;
+      /* No bottom padding since the cards sit at the absolute bottom */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      /* title on top, logos on bottom */
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .companies-header-wrapper {
+      padding: 0 100px;
+      margin-bottom: 60px;
+    }
+
+    .companies-logos-row {
+      display: flex;
+      width: 100%;
+      height: 220px;
+      /* Reduced height to make cards beautifully wide and landscape-oriented! */
+      box-sizing: border-box;
+    }
+
+    .company-card {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 30px;
+      /* Reduced vertical padding for wide landscape cards */
+      box-sizing: border-box;
+      border-radius: 48px 48px 0 0;
+      /* High round top corners interlocking beautifully! */
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.8s ease-out, border-radius 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+      opacity: 0;
+      transform: translateY(100px);
+      will-change: transform, opacity;
+      margin-right: -10px;
+      /* Slight overlap for seamless visual interlocking bar flow */
+      position: relative;
+      z-index: 1;
+    }
+
+    .company-card:last-child {
+      margin-right: 0;
+    }
+
+    /* Sequential Premium Gradients from bright white to medium-dark grey */
+    .bg-card-1 {
+      background-color: #ffffff;
+      z-index: 5;
+      box-shadow: -15px 0 40px rgba(0, 0, 0, 0.02);
+    }
+
+    .bg-card-2 {
+      background-color: #f5f5f7;
+      z-index: 4;
+    }
+
+    .bg-card-3 {
+      background-color: #eef0f3;
+      z-index: 3;
+    }
+
+    .bg-card-4 {
+      background-color: #e2e4e8;
+      z-index: 2;
+    }
+
+    .bg-card-5 {
+      background-color: #d5d8dc;
+      z-index: 1;
+    }
+
+    /* Interactive Elevate Hover State - 100% Match to Floating Capsule Screenshot! */
+    .company-card:hover {
+      transform: scale(1.08) !important;
+      /* Scales up dynamically in place to look beautifully bigger on hover! */
+      border-radius: 48px !important;
+      /* Fully rounds all 4 corners to reveal the gorgeous rounded capsules! */
+      z-index: 10 !important;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12) !important;
+      /* Rich premium floating depth shadow! */
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important, border-radius 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important, box-shadow 0.3s !important;
+      transition-delay: 0s !important;
+      /* Overrides staggered entrance delay to trigger hover instantly! */
+    }
+
+    /* Staggered Entrance Reveal */
+    .companies-section.active .company-card:nth-child(1) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    .companies-section.active .company-card:nth-child(2) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
+
+    .companies-section.active .company-card:nth-child(3) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.3s;
+    }
+
+    .companies-section.active .company-card:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.4s;
+    }
+
+    .companies-section.active .company-card:nth-child(5) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.5s;
+    }
+
+    /* Responsive overrides for Companies Layout */
+    @media (max-width: 1024px) {
+      .companies-section {
+        min-height: auto !important;
+        padding: 80px 0 0 0 !important;
+      }
+
+      .companies-header-wrapper {
+        padding: 0 24px !important;
+        margin-bottom: 40px !important;
+      }
+
+      .companies-logos-row {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 0 24px 40px 24px !important;
+        gap: 15px !important;
+      }
+
+      .company-card {
+        border-radius: 24px !important;
+        height: 140px !important;
+        margin-right: 0 !important;
+        opacity: 1 !important;
+        transform: none !important;
+        padding: 20px !important;
+      }
+
+      .bg-card-1 {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04) !important;
+      }
+    }
+
+    .companies-bottom-divider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 15px;
+      /* Set precisely to 15px! */
+      background-color: #121212;
+      z-index: 20;
+      /* Keep it on top of all interlocking cards! */
+    }
+
+    /* FOOTER SECTION: 100% MATCH TO PORTFOLIO SCREENSHOT */
+    .footer-section {
+      width: 100vw;
+      height: 100vh;
+      background-color: #ffffff;
+      padding: 120px 100px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+    }
+
+    .footer-left-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-right-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      min-width: 320px;
+      box-sizing: border-box;
+    }
+
+    .footer-info-group {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      /* Comfortable vertical spacing between Address, Phone, and Email */
+    }
+
+    .footer-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-info-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #121212;
+      margin: 0;
+      letter-spacing: -0.3px;
+    }
+
+    .footer-info-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.5;
+      font-weight: 400;
+      color: #8c8c8c;
+      /* Premium subtle gray text */
+      margin: 0;
+      letter-spacing: -0.2px;
+    }
+
+    .footer-email-link {
+      color: #8c8c8c;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-email-link:hover {
+      color: #121212;
+    }
+
+    .footer-copyright {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #b0b0b0;
+      letter-spacing: -0.1px;
+      margin-top: 50px;
+    }
+
+    .footer-copyright-link {
+      color: #b0b0b0;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .footer-copyright-link:hover {
+      color: #121212;
+    }
+
+    /* Responsive overrides for footer */
+    @media (max-width: 1024px) {
+      .footer-section {
+        height: auto !important;
+        min-height: auto !important;
+        padding: 80px 24px !important;
+        flex-direction: column !important;
+        gap: 60px !important;
+      }
+
+      .footer-right-column {
+        height: auto !important;
+        min-width: auto !important;
+        width: 100% !important;
+        gap: 60px !important;
+      }
+
+      .footer-info-group {
+        gap: 35px !important;
+      }
+
+      .footer-copyright {
+        margin-top: 20px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 100vh FULL SCREEN HERO -->
+  <div class="hero-wrapper">
+    <!-- Right Background Image with Parallax -->
+    <div class="hero-right">
+      <img
+        src="file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/media__1779101814473.jpg"
+        alt="Wind Turbine" class="hero-parallax-img" />
+    </div>
+
+    <!-- Left Dark Panel -->
+    <div class="hero-left">
+      <header class="navbar">
+        <div class="logo">
+          <svg width="144" height="25" viewBox="0 0 144 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M36.3406 18.4683H34.5417V2.21346H36.3406V8.4553C37.1642 7.415 38.5729 6.72146 40.1334 6.72146C42.6041 6.72146 44.2513 8.32527 44.2513 10.861V18.4683H42.4524V10.926C42.4524 9.32223 41.4121 8.30359 39.7866 8.30359C37.6193 8.30359 36.3623 9.73402 36.3406 11.4895V18.4683ZM49.9091 18.6416C47.3083 18.6416 45.6395 17.2979 45.6395 15.1956C45.6395 12.5515 48.1969 12.053 50.4943 11.8146C52.2498 11.6412 53.7669 11.6629 53.7886 10.731C53.7669 9.27888 52.5749 8.26025 50.841 8.26025C49.1722 8.26025 47.8718 9.19219 47.6768 10.5576H45.8996C46.1163 8.30359 48.1536 6.72146 50.8844 6.72146C53.7236 6.72146 55.5441 8.41196 55.5441 10.8393V16.431C55.5441 16.7994 55.7392 16.9945 56.1293 16.9945H56.7795V18.4683H55.7608C54.5255 18.4683 53.8753 17.9048 53.8753 16.8428V16.496C53.2034 17.8181 51.903 18.6416 49.9091 18.6416ZM50.1692 17.1029C52.3148 17.1029 53.7886 15.7375 53.7886 13.8302V12.3348C53.2901 13.0066 52.0114 13.1367 50.6026 13.2884C49.0205 13.4618 47.4384 13.6785 47.4384 15.1523C47.4384 16.3443 48.522 17.1029 50.1692 17.1029ZM60.8376 18.4683H59.0387V8.49865H56.9148V6.98154H59.0387V5.37773C59.0387 3.31879 60.1874 2.21346 62.3114 2.21346H64.8688V3.73058H62.3114C61.3577 3.73058 60.8376 4.31575 60.8376 5.37773V6.98154H64.5653V8.49865H60.8376V18.4683ZM70.3671 18.7067C66.9645 18.7067 64.7105 16.2143 64.7105 12.7682C64.7105 8.84542 67.2462 6.72146 70.1504 6.72146C73.3147 6.72146 75.3519 8.84542 75.417 12.5298V13.0283H66.5093C66.6177 15.4774 68.0481 17.1462 70.3671 17.1462C71.9709 17.1462 73.1413 16.3443 73.6181 14.8489H75.3736C74.8535 17.2112 72.9896 18.7067 70.3671 18.7067ZM66.6177 11.5329H73.5314C73.2063 9.51728 71.9926 8.28192 70.1504 8.28192C68.3299 8.28192 66.9861 9.47394 66.6177 11.5329ZM78.715 18.4683H76.9161V6.98154H78.3465L78.5199 8.73705C79.3002 7.52336 80.7956 6.72146 82.5078 6.72146C84.9785 6.72146 86.6257 8.32527 86.6257 10.861V18.4683H84.8268V10.926C84.8268 9.32223 83.7865 8.30359 82.0526 8.30359C79.9937 8.30359 78.7367 9.73402 78.715 11.4895V18.4683ZM92.8702 18.7067C90.1394 18.7067 88.1238 17.2762 87.9721 14.8489H89.7276C89.8577 16.3443 91.2231 17.1679 92.9569 17.1679C94.5824 17.1679 95.3626 16.5394 95.3626 15.3907C95.3626 14.307 94.5174 14.0686 93.3253 13.6568L91.6565 13.0933C89.966 12.5298 88.2755 12.0097 88.2755 9.92907C88.2755 7.9785 89.7926 6.72146 92.3067 6.72146C94.8425 6.72146 96.598 8.08686 96.8797 10.6443H95.1242C94.9291 9.04048 93.8021 8.26025 92.2417 8.26025C90.8329 8.26025 90.0094 8.88877 90.0094 9.88573C90.0094 11.0777 91.2664 11.3161 92.22 11.6412L93.7805 12.1614C95.8828 12.8549 97.1398 13.5701 97.1398 15.4774C97.1398 17.493 95.666 18.7067 92.8702 18.7067ZM104.171 18.4683H102.892C100.659 18.4683 99.4675 17.3196 99.4675 15.1956V8.49865H97.3435V6.98154H99.4675V3.05871H101.266V6.98154H104.366V8.49865H101.266V15.1956C101.266 16.3443 101.83 16.9511 102.892 16.9511H104.171V18.4683ZM107.417 18.4683H105.619V6.98154H107.049L107.266 9.17052C108.003 7.69675 109.346 6.91652 111.254 6.91652H111.644V8.69371H111.254C108.826 8.69371 107.417 10.0808 107.417 12.4431V18.4683ZM117.357 18.7067C113.673 18.7067 111.722 16.0842 111.722 12.6165C111.722 8.7804 114.236 6.72146 117.357 6.72146C121.02 6.72146 122.992 9.36557 122.992 12.6165C122.992 16.5827 120.587 18.7067 117.357 18.7067ZM117.357 17.1462C119.806 17.1462 121.15 15.1089 121.15 12.6165C121.15 10.0374 119.655 8.28192 117.357 8.28192C115.06 8.28192 113.565 10.0374 113.565 12.6165C113.565 15.5641 115.277 17.1462 117.357 17.1462ZM126.277 18.4683H124.478V6.98154H125.909L126.082 8.75873C126.862 7.52336 128.358 6.72146 130.005 6.72146C131.739 6.72146 133.039 7.61005 133.624 8.99713C134.361 7.6534 135.943 6.72146 137.699 6.72146C140.126 6.72146 141.687 8.43363 141.687 10.7743V18.4683H139.888V10.8393C139.888 9.30055 138.934 8.30359 137.395 8.30359C135.25 8.30359 133.993 9.73402 133.971 11.4895V18.4683H132.194V10.8393C132.194 9.30055 131.24 8.30359 129.702 8.30359C127.556 8.30359 126.299 9.73402 126.277 11.4895V18.4683Z"
+              fill="white" />
+            <path
+              d="M0 15.2694V10.2019H9.60022C9.98263 10.2019 10.3466 10.0377 10.5998 9.7511L13.5414 6.4202C14.3008 5.56027 15.3928 5.06775 16.5401 5.06775H22.0036V10.2019L12.2573 10.3906C11.8823 10.3978 11.5277 10.5627 11.2804 10.8447L8.19801 14.3606C7.6916 14.9382 6.96071 15.2694 6.19252 15.2694H0Z"
+              fill="white" />
+            <path d="M0 5.06749V0H17.6695L14.2688 4.10251C13.7621 4.71376 13.0094 5.06749 12.2154 5.06749H0Z"
+              fill="white" />
+            <path
+              d="M21.9365 16.4028L21.9365 21.4703L4.26698 21.4703L7.66774 17.3678C8.17444 16.7566 8.92712 16.4028 9.72109 16.4028L21.9365 16.4028Z"
+              fill="white" />
+          </svg>
+        </div>
+        <nav class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#services">Services</a>
+          <a href="#company">Company</a>
+        </nav>
+      </header>
+
+      <div class="hero-content">
+        <h1 class="hero-title">We're creating a<br>smarter, greener<br>energy future, today</h1>
+        <p class="hero-subtitle">Technology that brings the utility to the<br>customer, and revenue to grid resources
+        </p>
+        <div class="hero-actions">
+          <button class="btn-projects">Projects</button>
+          <button class="btn-news">News ↗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REDESIGNED INTRO SECTION WITH STAGGERED ANIMATIONS -->
+  <section class="intro-section light-section container" id="about">
+    <div class="intro-top">
+      <h2 class="intro-title fade-in-up">
+        <span class="line">We are energizing</span>
+        <span class="line">the future</span>
+      </h2>
+      <p class="intro-desc fade-in-up">HAFEN is an SME located in Norway, specifically north of the Arctic Circle.
+        Established in 2013, this is a project-oriented company focusing on research and innovation actions</p>
+    </div>
+
+    <div class="intro-bottom-grid">
+      <div class="intro-col fade-in-up">
+        Hafenstrom AS was established in 2013 as an ESCO service company for the production of new renewable power and
+        energy efficiency aimed at shore power plants for ports in Norway.
+      </div>
+      <div class="intro-col fade-in-up">
+        The company became involved early on in European research and development work within IoT and digitization
+        platforms, e.g., for smart neighbourhoods (VICINITY-H2020), energy flexibility for ports (GIFT-H2020), open
+        digital ecosystem for smart societies and rural areas (AURORAL-H2020).
+      </div>
+      <div class="intro-col fade-in-up">
+        We currently have 6 employees and are based in Narvik. Hafenstrom leads the international the standardization
+        committee for Internet-of-Things and Digital Twins under the auspices of the Norwegian Electrotechnical
+        Committee (NEK).
+      </div>
+    </div>
+  </section>
+
+  <!-- CANOPY SECTION WITH PARALLAX AND REVEAL EFFECTS (SPLIT SCREEN EDGE-TO-EDGE) -->
+  <section class="canopy-section" id="services">
+    <div class="canopy-sticky-wrapper">
+      <!-- Left Parallax Image (Full Height) -->
+      <div class="canopy-left">
+        <img
+          src="file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/solar_panel_1779098952983.png"
+          alt="Solar Canopy" class="parallax-img" />
+      </div>
+
+      <!-- Right Side Content Panel -->
+      <div class="canopy-right">
+        <h2 class="canopy-title">We're creating a<br>smarter, greener<br>energy future, today</h2>
+
+        <div class="canopy-details">
+          <div class="canopy-col-left">
+            We normally work as a service company for the production of new renewable power and energy efficiency aimed
+            at shore power plants for ports in Norway.
+          </div>
+          <div class="canopy-col-right">
+            In this project, we are developing a service and a system within energy management and preparedness, and
+            will use our expertise in strategy development and data consolidation towards municipal preparedness and
+            effort management for optimized utilization of drones. The goal is that the various parties involved will be
+            able to interact in a much better way today, and that they can use the same system both in readiness and in
+            actual
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT SECTION (100% MATCH TO SCREENSHOT) -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <!-- Column 1 -->
+      <div class="stats-col">
+        <h2 class="stats-header">
+          <span class="line">We are energizing</span>
+          <span class="line">the future</span>
+        </h2>
+        <div class="stat-content">
+          <h3 class="stat-number" data-target="350" data-suffix="m">0m</h3>
+          <p>Empowering Onshore Power Systems</p>
+        </div>
+      </div>
+      <!-- Column 2 -->
+      <div class="stats-col">
+        <div class="stats-top-spacer"></div>
+        <div class="stat-content">
+          <h3 class="stat-number" data-target="34" data-suffix="%">0%</h3>
+          <p>Pioneering Expertise and Expansive Experience</p>
+        </div>
+      </div>
+      <!-- Column 3 -->
+      <div class="stats-col">
+        <div class="stats-top-spacer"></div>
+        <div class="stat-content">
+          <h3 class="stat-number" data-target="1232" data-suffix="">0</h3>
+          <p>Mastering System Design and Development</p>
+        </div>
+      </div>
+      <!-- Column 4 -->
+      <div class="stats-col">
+        <div class="stats-top-spacer"></div>
+        <div class="stat-content">
+          <h3 class="stat-number" data-target="500" data-suffix="+">0+</h3>
+          <p>Digital global audience reach</p>
+        </div>
+      </div>
+      <!-- Column 5 -->
+      <div class="stats-col">
+        <div class="stats-top-spacer"></div>
+        <div class="stat-content">
+          <h3 class="stat-number" data-target="70" data-suffix="">0</h3>
+          <p>Digital global audience reach</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: ASYMMETRICAL NEWS GRID (100% MATCH TO SCREENSHOT) -->
+  <section class="news-section">
+    <div class="news-header-wrapper">
+      <h2 class="intro-title fade-in-up">
+        <span class="line">We are energizing</span>
+        <span class="line">the future</span>
+      </h2>
+    </div>
+
+    <div class="news-rows-container">
+      <!-- ROW 1 -->
+      <div class="news-grid news-row-1">
+        <!-- Left Horizontal Hero Card -->
+        <div class="news-card-large">
+          <div class="badge-row">
+            <span class="badge-date">Sep 06, 2023</span>
+            <span class="badge-tag-white">• Tech</span>
+          </div>
+          <h3 class="news-card-large-title">Electric Vehicles Land,<br>Sea, and Air 2024–<br>2044</h3>
+          <a href="#details" class="news-arrow-btn">↗</a>
+        </div>
+
+        <!-- Right Stacked Vertical Cards -->
+        <div class="news-column-right">
+          <!-- Top Solid Card -->
+          <a href="#transitions" class="news-card-small-solid">
+            <span class="badge-tag-dark">• Energy</span>
+            <h4 class="news-card-small-title">Global Energy<br>Transitions<br>Stocktake</h4>
+            <span class="news-learn-more">Learn more •</span>
+          </a>
+
+          <!-- Bottom Image Background Card -->
+          <a href="#stocktake" class="news-card-small-img">
+            <span class="badge-tag-white">• Energy</span>
+            <h4 class="news-card-small-title">Global Energy<br>Transitions<br>Stocktake</h4>
+            <div style="height: 10px;"></div> <!-- Spacer matching layout height alignment -->
+          </a>
+        </div>
+      </div>
+
+      <!-- ROW 2 (ALL BIG BOXES LEFT, SMALL BOXES RIGHT WITH OFFSET) -->
+      <div class="news-grid news-row-2">
+        <!-- Left Horizontal Hero Card with snow/sunset turbine background -->
+        <div class="news-card-large"
+          style="background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/wind_turbine_snow_1779101689336.png');">
+          <div class="badge-row">
+            <span class="badge-date">Sep 06, 2023</span>
+            <span class="badge-tag-white">• Tech</span>
+          </div>
+          <h3 class="news-card-large-title">Electric Vehicles Land,<br>Sea, and Air 2024–<br>2044</h3>
+          <a href="#details-2" class="news-arrow-btn">↗</a>
+        </div>
+
+        <!-- Right Stacked Vertical Cards -->
+        <div class="news-column-right">
+          <!-- Top Mountain Hiker Image Background Card (Replaced with Solar Panel to balance projects) -->
+          <a href="#stocktake-2" class="news-card-small-img"
+            style="background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/solar_panel_1779098952983.png');">
+            <span class="badge-tag-white">• Energy</span>
+            <h4 class="news-card-small-title">Global Energy<br>Transitions<br>Stocktake</h4>
+            <div style="height: 10px;"></div> <!-- Spacer matching layout height alignment -->
+          </a>
+
+          <!-- Bottom Staggered Mountain Hiker Card with "See all picks" Pill overlay -->
+          <a href="#picks" class="news-card-small-img"
+            style="background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/mountain_hiker_1779098979778.png'); display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start; width: 100%;">
+              <span class="badge-tag-white" style="margin: 0;">• Energy</span>
+              <h4 class="news-card-small-title" style="margin: 0; max-width: 100%;">Global
+                Energy<br>Transitions<br>Stocktake</h4>
+            </div>
+            <div class="btn-see-all-picks-wrapper">
+              <span class="btn-see-all-picks">See all picks</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: PROJECTS VIEWPORT GRID (100% MATCH TO SCREENSHOT) -->
+  <section class="projects-section">
+    <div class="projects-header-wrapper">
+      <h2 class="projects-title">
+        <span class="line">Hafenstrom</span>
+        <span class="line">Projects</span>
+      </h2>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Left Column (Symmetrical large cards) -->
+      <div class="projects-column-left">
+        <!-- Project Spade -->
+        <a href="#spade" class="project-card"
+          style="background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/drone_fog_1779098993374.png');">
+          <div class="project-badge">Project Spade</div>
+        </a>
+
+        <!-- Project Offshore -->
+        <a href="#offshore" class="project-card"
+          style="background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/offshore_mist_1779098966765.png');">
+          <div class="project-badge">Project Offshore</div>
+        </a>
+      </div>
+
+      <!-- Right Column (Symmetrical large cards shifted upward!) -->
+      <div class="projects-column-right">
+        <!-- Project Refresh -->
+        <a href="#refresh" class="project-card"
+          style="background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/green_lamp_1779099020122.png');">
+          <div class="project-badge">Project Refresh</div>
+        </a>
+
+        <!-- Project Flexnet -->
+        <a href="#flexnet" class="project-card"
+          style="background-image: url('file:///Users/adnangodanci/.gemini/antigravity/brain/44945229-a52a-47e2-8611-82ae2434aaad/power_lines_1779099034996.png');">
+          <div class="project-badge">Project Flexnet</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: COMPANIES ROW SECTION (100% MATCH TO SCREENSHOT) -->
+  <section class="companies-section">
+    <div class="companies-header-wrapper">
+      <h2 class="companies-title">
+        <span class="line">Trusted by great</span>
+        <span class="line">Companies</span>
+      </h2>
+    </div>
+
+    <div class="companies-logos-row">
+      <!-- 1. Hålogaland Kraft (White background card) -->
+      <div class="company-card bg-card-1">
+        <img src="file:///Users/adnangodanci/Desktop/ddd/Halogaland_kraft.png"
+          style="height: 36px; width: auto; object-fit: contain;" alt="Hålogaland Kraft">
+      </div>
+
+      <!-- 2. Harstad kommune (Light gray card) -->
+      <div class="company-card bg-card-2">
+        <img src="file:///Users/adnangodanci/Desktop/ddd/Harstad_kommune.png"
+          style="height: 36px; width: auto; object-fit: contain;" alt="Harstad kommune">
+      </div>
+
+      <!-- 3. Troms fylkeskommune (Slightly darker gray card) -->
+      <div class="company-card bg-card-3">
+        <img src="file:///Users/adnangodanci/Desktop/ddd/TROMS_romssa.png"
+          style="height: 36px; width: auto; object-fit: contain;" alt="Troms fylkeskommune">
+      </div>
+
+      <!-- 4. Tromsø kommune (Medium gray card) -->
+      <div class="company-card bg-card-4">
+        <img src="file:///Users/adnangodanci/Desktop/ddd/Tromso_Kommune.png"
+          style="height: 28px; width: auto; object-fit: contain;" alt="Tromsø kommune">
+      </div>
+
+      <!-- 5. NTNU (Darker gray card) -->
+      <div class="company-card bg-card-5">
+        <img src="file:///Users/adnangodanci/Desktop/ddd/NTNU.png"
+          style="height: 28px; width: auto; object-fit: contain;" alt="NTNU">
+      </div>
+    </div>
+
+    <!-- 15px horizontal solid black divider bar matching the screenshot! -->
+    <div class="companies-bottom-divider"></div>
+  </section>
+
+  <!-- FOOTER SECTION (100% MATCH TO SCREENSHOT) -->
+  <footer class="footer-section">
+    <!-- Left Column: Premium brand cascading slanted logo icon! -->
+    <div class="footer-left-column">
+      <svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 31.2279V20.8643H19.6336C20.4157 20.8643 21.1601 20.5285 21.6778 19.9423L27.6937 13.1302C29.2468 11.3715 31.4802 10.3643 33.8264 10.3643H45V20.8643L25.0677 21.25C24.3007 21.2649 23.5754 21.6021 23.0697 22.1789L16.7659 29.3692C15.7302 30.5505 14.2355 31.2279 12.6644 31.2279H0Z"
+          fill="black" />
+        <path d="M0 10.3636V0H36.1364L29.1814 8.39012C28.1451 9.64021 26.6058 10.3636 24.982 10.3636H0Z" fill="black" />
+        <path
+          d="M44.8633 33.5455L44.8633 43.9092L8.72692 43.9092L15.6819 35.5191C16.7182 34.269 18.2575 33.5455 19.8812 33.5455L44.8633 33.5455Z"
+          fill="black" />
+      </svg>
+    </div>
+
+    <!-- Right Column: Info groups and copyright -->
+    <div class="footer-right-column">
+      <div class="footer-info-group">
+        <!-- Address Block -->
+        <div class="footer-info-block">
+          <h4 class="footer-info-title">Address</h4>
+          <p class="footer-info-value">Havnens Hus,Havnegata 2, N-8514<br>Narvik, Norway</p>
+        </div>
+
+        <!-- Phone Block -->
+        <div class="footer-info-block">
+          <h4 class="footer-info-title">Phone</h4>
+          <p class="footer-info-value">00 (47) 915 37 159</p>
+        </div>
+
+        <!-- Email Block -->
+        <div class="footer-info-block">
+          <h4 class="footer-info-title">Email</h4>
+          <p class="footer-info-value">
+            <a href="mailto:anders@fjelstad.no" class="footer-email-link">anders@fjelstad.no</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Copyright footer note -->
+      <div class="footer-copyright">
+        Copyright 2023 © <a href="#fjelstad" class="footer-copyright-link">Fjelstad AS</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DIRECT PIXEL-FOR-PIXEL SCROLL CONTROLLER WITH ACTIVE OBSERVERS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const heroParallaxImg = document.querySelector('.hero-parallax-img');
+      const canopyParallaxImg = document.querySelector('.parallax-img');
+      const canopySectionEl = document.querySelector('.canopy-section');
+
+      const introSectionEl = document.querySelector('.intro-section');
+
+      // 1. ACTIVE VIEWPORT OBSERVER TO TRIGGER STAGGERED SPRING BOUNCES
+      const activeObserverOptions = {
+        threshold: 0.25, // Trigger bounce when 25% of section snaps into view
+      };
+
+      let statAnimationRequest = null;
+
+      const animateStatsNumbers = () => {
+        const numbers = document.querySelectorAll('.stat-number');
+        const duration = 2000; // 2.0 seconds duration for ultra-luxurious feel
+        const startTime = performance.now();
+
+        if (statAnimationRequest) cancelAnimationFrame(statAnimationRequest);
+
+        const updateNumbers = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(1, elapsed / duration);
+
+          // Cubic Ease-In-Out: Starts slow (1, 2, 3...), accelerates rapidly, and decelerates softly at the end!
+          const ease = progress < 0.5
+            ? 4 * progress * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+          numbers.forEach(el => {
+            const target = parseInt(el.getAttribute('data-target'), 10);
+            const suffix = el.getAttribute('data-suffix') || '';
+            const currentVal = Math.floor(ease * target);
+            el.textContent = currentVal + suffix;
+          });
+
+          if (progress < 1) {
+            statAnimationRequest = requestAnimationFrame(updateNumbers);
+          } else {
+            numbers.forEach(el => {
+              const target = el.getAttribute('data-target');
+              const suffix = el.getAttribute('data-suffix') || '';
+              el.textContent = target + suffix;
+            });
+          }
+        };
+
+        statAnimationRequest = requestAnimationFrame(updateNumbers);
+      };
+
+      const resetStatsNumbers = () => {
+        if (statAnimationRequest) cancelAnimationFrame(statAnimationRequest);
+        const numbers = document.querySelectorAll('.stat-number');
+        numbers.forEach(el => {
+          const suffix = el.getAttribute('data-suffix') || '';
+          el.textContent = '0' + suffix;
+        });
+      };
+
+      const activeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            if (entry.target.classList.contains('stats-section')) {
+              animateStatsNumbers();
+            }
+          } else {
+            // Remove active state to allow re-triggering bounce transitions when scrolling back!
+            entry.target.classList.remove('active');
+            if (entry.target.classList.contains('stats-section')) {
+              resetStatsNumbers();
+            }
+          }
+        });
+      }, activeObserverOptions);
+
+      const statsSectionEl = document.querySelector('.stats-section');
+      const newsSectionEl = document.querySelector('.news-section');
+
+      if (introSectionEl) activeObserver.observe(introSectionEl);
+      if (canopySectionEl) activeObserver.observe(canopySectionEl);
+      if (statsSectionEl) activeObserver.observe(statsSectionEl);
+      if (newsSectionEl) activeObserver.observe(newsSectionEl);
+
+      const projectsSectionEl = document.querySelector('.projects-section');
+      if (projectsSectionEl) activeObserver.observe(projectsSectionEl);
+
+      const companiesSectionEl = document.querySelector('.companies-section');
+      if (companiesSectionEl) activeObserver.observe(companiesSectionEl);
+
+      // 2. IMAGE PARALLAX ENGINE
+      const handleScroll = () => {
+        const viewHeight = window.innerHeight;
+
+        // Animate Hero Image Parallax
+        if (heroParallaxImg) {
+          const rect = heroParallaxImg.parentElement.getBoundingClientRect();
+          if (rect.top < viewHeight && rect.bottom > 0) {
+            const scrollPct = (viewHeight - rect.top) / (viewHeight + rect.height);
+            const translateVal = (scrollPct - 0.5) * 80;
+            heroParallaxImg.style.transform = `translateY(${translateVal}px) scale(1.15)`;
+          }
+        }
+
+        // Animate Pinned Canopy Image Parallax
+        if (canopySectionEl) {
+          const rect = canopySectionEl.getBoundingClientRect();
+
+          if (window.innerWidth > 1024) {
+            if (rect.top <= 0 && rect.bottom >= viewHeight) {
+              const scrollPct = -rect.top / (rect.height - viewHeight); // 0 to 1
+              if (canopyParallaxImg) {
+                const translateVal = (scrollPct - 0.5) * 80;
+                canopyParallaxImg.style.transform = `translateY(${translateVal}px) scale(1.15)`;
+              }
+            } else if (rect.top > 0) {
+              if (canopyParallaxImg) canopyParallaxImg.style.transform = "translateY(-40px) scale(1.15)";
+            } else if (rect.bottom < viewHeight) {
+              if (canopyParallaxImg) canopyParallaxImg.style.transform = "translateY(40px) scale(1.15)";
+            }
+          } else {
+            // Standard scroll parallax on mobile stacking
+            if (canopyParallaxImg) {
+              const imgRect = canopyParallaxImg.parentElement.getBoundingClientRect();
+              if (imgRect.top < viewHeight && imgRect.bottom > 0) {
+                const scrollPct = (viewHeight - imgRect.top) / (viewHeight + imgRect.height);
+                const translateVal = (scrollPct - 0.5) * 80;
+                canopyParallaxImg.style.transform = `translateY(${translateVal}px) scale(1.15)`;
+              }
+            }
+          }
+        }
+      };
+
+      // Register scroll event and fire once immediately on load
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+    });
+  </script>
+
+</body>
+
+</html>
