@@ -359,8 +359,8 @@
     .canopy-section {
       position: relative;
       width: 100%;
-      height: 200vh;
-      /* Extra scroll space to act as a pinning track */
+      height: 100vh;
+      /* Perfect single viewport height scroll! */
       background-color: #fff;
       scroll-snap-align: start;
       scroll-snap-stop: always;
@@ -2014,32 +2014,13 @@
           }
         }
 
-        // Animate Pinned Canopy Image Parallax
-        if (canopySectionEl) {
+        // Animate Canopy Image Parallax
+        if (canopySectionEl && canopyParallaxImg) {
           const rect = canopySectionEl.getBoundingClientRect();
-
-          if (window.innerWidth > 1024) {
-            if (rect.top <= 0 && rect.bottom >= viewHeight) {
-              const scrollPct = -rect.top / (rect.height - viewHeight); // 0 to 1
-              if (canopyParallaxImg) {
-                const translateVal = (scrollPct - 0.5) * 80;
-                canopyParallaxImg.style.transform = `translateY(${translateVal}px) scale(1.15)`;
-              }
-            } else if (rect.top > 0) {
-              if (canopyParallaxImg) canopyParallaxImg.style.transform = "translateY(-40px) scale(1.15)";
-            } else if (rect.bottom < viewHeight) {
-              if (canopyParallaxImg) canopyParallaxImg.style.transform = "translateY(40px) scale(1.15)";
-            }
-          } else {
-            // Standard scroll parallax on mobile stacking
-            if (canopyParallaxImg) {
-              const imgRect = canopyParallaxImg.parentElement.getBoundingClientRect();
-              if (imgRect.top < viewHeight && imgRect.bottom > 0) {
-                const scrollPct = (viewHeight - imgRect.top) / (viewHeight + imgRect.height);
-                const translateVal = (scrollPct - 0.5) * 80;
-                canopyParallaxImg.style.transform = `translateY(${translateVal}px) scale(1.15)`;
-              }
-            }
+          if (rect.top < viewHeight && rect.bottom > 0) {
+            const scrollPct = (viewHeight - rect.top) / (viewHeight + rect.height);
+            const translateVal = (scrollPct - 0.5) * 80;
+            canopyParallaxImg.style.transform = `translateY(${translateVal}px) scale(1.15)`;
           }
         }
       };
