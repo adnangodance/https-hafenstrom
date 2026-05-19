@@ -720,11 +720,26 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 50px;
-      background-image: url('images/drone_fog_1779098993374.png');
-      background-size: cover;
-      background-position: center;
       color: #ffffff;
       box-sizing: border-box;
+    }
+
+    .card-bg-layer {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: 0 !important;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .news-card-large:hover .card-bg-layer,
+    .news-card-small-img:hover .card-bg-layer,
+    .project-card:hover .card-bg-layer {
+      transform: scale(1.08);
     }
 
     .news-card-large::after {
@@ -864,9 +879,6 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 40px;
-      background-image: url('images/green_lamp_1779099020122.png');
-      background-size: cover;
-      background-position: center;
       color: #ffffff;
       box-sizing: border-box;
       text-decoration: none;
@@ -1135,8 +1147,6 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 40px;
-      background-size: cover;
-      background-position: center;
       box-sizing: border-box;
       height: 580px;
       /* Equal rectangular heights for all cards! */
@@ -1706,6 +1716,7 @@
       <div class="news-grid news-row-1">
         <!-- Left Horizontal Hero Card -->
         <div class="news-card-large">
+          <div class="card-bg-layer" style="background-image: url('images/drone_fog_1779098993374.png');"></div>
           <div class="badge-row">
             <span class="badge-date">Sep 06, 2023</span>
             <span class="badge-tag-white">• Tech</span>
@@ -1725,6 +1736,7 @@
 
           <!-- Bottom Image Background Card -->
           <a href="#stocktake" class="news-card-small-img">
+            <div class="card-bg-layer" style="background-image: url('images/green_lamp_1779099020122.png');"></div>
             <span class="badge-tag-white">• Energy</span>
             <h4 class="news-card-small-title">Global Energy<br>Transitions<br>Stocktake</h4>
             <div style="height: 10px;"></div> <!-- Spacer matching layout height alignment -->
@@ -1735,8 +1747,8 @@
       <!-- ROW 2 (ALL BIG BOXES LEFT, SMALL BOXES RIGHT WITH OFFSET) -->
       <div class="news-grid news-row-2">
         <!-- Left Horizontal Hero Card with snow/sunset turbine background -->
-        <div class="news-card-large"
-          style="background-image: url('images/wind_turbine_snow_1779101689336.png');">
+        <div class="news-card-large">
+          <div class="card-bg-layer" style="background-image: url('images/wind_turbine_snow_1779101689336.png');"></div>
           <div class="badge-row">
             <span class="badge-date">Sep 06, 2023</span>
             <span class="badge-tag-white">• Tech</span>
@@ -1748,8 +1760,8 @@
         <!-- Right Stacked Vertical Cards -->
         <div class="news-column-right">
           <!-- Top Mountain Hiker Image Background Card (Replaced with Solar Panel to balance projects) -->
-          <a href="#stocktake-2" class="news-card-small-img"
-            style="background-image: url('images/solar_panel_1779098952983.png');">
+          <a href="#stocktake-2" class="news-card-small-img">
+            <div class="card-bg-layer" style="background-image: url('images/solar_panel_1779098952983.png');"></div>
             <span class="badge-tag-white">• Energy</span>
             <h4 class="news-card-small-title">Global Energy<br>Transitions<br>Stocktake</h4>
             <div style="height: 10px;"></div> <!-- Spacer matching layout height alignment -->
@@ -1757,7 +1769,8 @@
 
           <!-- Bottom Staggered Mountain Hiker Card with "See all picks" Pill overlay -->
           <a href="#picks" class="news-card-small-img"
-            style="background-image: url('images/mountain_hiker_1779098979778.png'); display: flex; flex-direction: column; justify-content: space-between;">
+            style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="card-bg-layer" style="background-image: url('images/mountain_hiker_1779098979778.png');"></div>
             <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start; width: 100%;">
               <span class="badge-tag-white" style="margin: 0;">• Energy</span>
               <h4 class="news-card-small-title" style="margin: 0; max-width: 100%;">Global
@@ -1785,14 +1798,14 @@
       <!-- Left Column (Symmetrical large cards) -->
       <div class="projects-column-left">
         <!-- Project Spade -->
-        <a href="#spade" class="project-card"
-          style="background-image: url('images/drone_fog_1779098993374.png');">
+        <a href="#spade" class="project-card">
+          <div class="card-bg-layer" style="background-image: url('images/drone_fog_1779098993374.png');"></div>
           <div class="project-badge">Project Spade</div>
         </a>
 
         <!-- Project Offshore -->
-        <a href="#offshore" class="project-card"
-          style="background-image: url('images/offshore_mist_1779098966765.png');">
+        <a href="#offshore" class="project-card">
+          <div class="card-bg-layer" style="background-image: url('images/offshore_mist_1779098966765.png');"></div>
           <div class="project-badge">Project Offshore</div>
         </a>
       </div>
@@ -1800,14 +1813,14 @@
       <!-- Right Column (Symmetrical large cards shifted upward!) -->
       <div class="projects-column-right">
         <!-- Project Refresh -->
-        <a href="#refresh" class="project-card"
-          style="background-image: url('images/green_lamp_1779099020122.png');">
+        <a href="#refresh" class="project-card">
+          <div class="card-bg-layer" style="background-image: url('images/green_lamp_1779099020122.png');"></div>
           <div class="project-badge">Project Refresh</div>
         </a>
 
         <!-- Project Flexnet -->
-        <a href="#flexnet" class="project-card"
-          style="background-image: url('images/power_lines_1779099034996.png');">
+        <a href="#flexnet" class="project-card">
+          <div class="card-bg-layer" style="background-image: url('images/power_lines_1779099034996.png');"></div>
           <div class="project-badge">Project Flexnet</div>
         </a>
       </div>
